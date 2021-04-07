@@ -9,15 +9,15 @@ Read and manage power states for your Valve Index® Base Stations (also referred
 - Ensure [HACS](https://hacs.xyz) is installed.
 - Go to Community -> Frontend -> press the three dots (top right corner of screen) -> Custom repositories and add the following information: 
   - Add custom repository URL: https://github.com/jariz/homeassistant-basestation 
-  - Category: `Integration 
+  - Category: `Integration` 
   - Press add.
   - Now in the repository overview, click install next to this repo.
 
-## Install a Bluetooth Backend
+## Will it run?
 
 Before configuring Home Assistant you need a Bluetooth backend and the MAC address of your basestation. Depending on your operating system, you may have to configure the proper Bluetooth backend for your system:
 
-- On [Home Assistant](https://home-assistant.io/hassio/installation/): Will work out of the box.
+- On [Home Assistant](https://home-assistant.io/hassio/installation/): integration works out of the box.
 - On [Home Assistant Container](https://home-assistant.io/docs/installation/docker/): Works out of the box with `--net=host` and properly configured Bluetooth on the host.
 - On other Linux systems:
   - Install the `bluepy` library (via pip). When using a virtual environment, make sure to install the library in the right one.
@@ -82,7 +82,7 @@ switch:
 
 - Turn the airco on when your VR equipment activates.
 - Turn your basestations off/on when you turn off/on the lights
-- Turn your basestations off if there's no motion detected in the room anymore.
+- Turn your basestations off if there's no motion detected in the room anymore, or if you've left the house.
 - Start your computer (wake on lan), VR equipment, and screen (power plug) all at once.
 
 ## Final notes
