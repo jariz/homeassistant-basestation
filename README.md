@@ -5,6 +5,15 @@ Read and manage power states for your Valve Index® Base Stations (also referred
 ![](https://jari.lol/TYc7q1qt9E.png)  
 ![](https://jari.lol/10oBiFCkzo.png)
 
+## Installation
+
+- Ensure [HACS](https://hacs.xyz)) is installed.
+- Go to Community -> Frontend -> press the three dots (top right corner of screen) -> Custom repositories and add the following information: 
+  - Add custom repository URL: https://github.com/jariz/homeassistant-basestation 
+  - Category: `Integration 
+  - Press add.
+  - Now in the repository overview, click install next to this repo.
+
 ## Install a Bluetooth Backend
 
 Before configuring Home Assistant you need a Bluetooth backend and the MAC address of your basestation. Depending on your operating system, you may have to configure the proper Bluetooth backend for your system:
@@ -79,4 +88,6 @@ switch:
 
 ## Final notes
 
+- Yes, BLE does not conmmunicate well over long range.  
+  If this integration becomes any popular, I'm willing to write a gateway app [like miflora has](https://github.com/ThomDietrich/miflora-mqtt-daemon) at some point.
 - Largely inspired by [the miflora integration](https://github.com/home-assistant/core/tree/dev/homeassistant/components/miflora), thanks!
