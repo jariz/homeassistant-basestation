@@ -6,7 +6,7 @@ Read and manage power states for your Valve Index® Base Stations (also referred
 
 ## Installation
 
-- Ensure [HACS](https://hacs.xyz)) is installed.
+- Ensure [HACS](https://hacs.xyz) is installed.
 - Go to Community -> Frontend -> press the three dots (top right corner of screen) -> Custom repositories and add the following information: 
   - Add custom repository URL: https://github.com/jariz/homeassistant-basestation 
   - Category: `Integration 
