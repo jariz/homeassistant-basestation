@@ -1,0 +1,8 @@
+{
+    "name": "Valve Index Basestation",
+    "domains": [
+      "switch"
+    ],
+    "render_readme": true,
+    "iot_class": ["Local Polling", "Local Push"]
+  }

@@ -1,0 +1,16 @@
+{
+  "domain": "basestation",
+  "name": "Valve Index Basestation",
+  "config_flow": false,
+  "documentation": "https://www.home-assistant.io/integrations/basestation",
+  "requirements": [
+    "basestation==0.0.4"
+  ],
+  "ssdp": [],
+  "zeroconf": [],
+  "homekit": {},
+  "dependencies": [],
+  "codeowners": [
+    "@jariz"
+  ]
+}
