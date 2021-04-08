@@ -52,7 +52,7 @@ To use your basestation(s) in your installation, add the following to your `conf
 
 ```yaml
 # Example configuration.yaml entry
-sensor:
+switch:
   - platform: basestation
     mac: "xx:xx:xx:xx:xx:xx"
 ```
