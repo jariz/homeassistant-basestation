@@ -88,5 +88,5 @@ switch:
 ## Final notes
 
 - Yes, BLE does not conmmunicate well over long range.  
-  If this integration becomes any popular, I'm willing to write a gateway app [like miflora has](https://github.com/ThomDietrich/miflora-mqtt-daemon) at some point.
+  If this integration becomes any popular, ~~I'm willing to write a gateway app [like miflora has](https://github.com/ThomDietrich/miflora-mqtt-daemon) at some point.~~. I more or less did this with ESP32: [read here](https://blog.jari.io/tracking-valve-index-basestation-power-state-with-esphome/).
 - Largely inspired by [the miflora integration](https://github.com/home-assistant/core/tree/dev/homeassistant/components/miflora), thanks!
