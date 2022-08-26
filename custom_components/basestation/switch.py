@@ -1,15 +1,16 @@
 """The basestation switch."""
 
-from basestation.device import BasestationDevice
+from bleak import BleakClient
 
 from homeassistant.components.switch import SwitchEntity
 
+import const
 
 def setup_platform(hass, config, add_entities, discovery_info=None):
     """Set up the sensor platform."""
     mac = config.get("mac")
     name = config.get("name")
-    device = BasestationDevice(mac)
+    device = BleakClient(mac)
     add_entities([BasestationSwitch(device, name)])
 
 
@@ -35,13 +36,13 @@ class BasestationSwitch(SwitchEntity):
     def turn_on(self, **kwargs):
         """Turn the switch on."""
         self._device.connect()
-        self._device.turn_on()
+        self._device.write_gatt_char(const.PWR_CHARACTERISTIC, const.PWR_ON)
         self._device.disconnect()
 
     def turn_off(self, **kwargs):
         """Turn the switch off."""
         self._device.connect()
-        self._device.turn_off()
+        self._device.write_gatt_char(const.PWR_CHARACTERISTIC, const.PWR_STANDBY)
         self._device.disconnect()
 
     @property
