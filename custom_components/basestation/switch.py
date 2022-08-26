@@ -4,9 +4,11 @@ from bleak import BleakClient
 
 from homeassistant.components.switch import SwitchEntity
 
-PWR_CHARACTERISTIC = "00001525-1212-efde-1523-785feabcd124"
-PWR_ON = bytearray([0x01])
-PWR_STANDBY = bytearray([0x00])
+from .const import (
+    PWR_CHARACTERISTIC,
+    PWR_ON,
+    PWR_STANDBY,
+)
 
 def setup_platform(hass, config, add_entities, discovery_info=None):
     """Set up the sensor platform."""
@@ -37,15 +39,15 @@ class BasestationSwitch(SwitchEntity):
 
     def turn_on(self, **kwargs):
         """Turn the switch on."""
-        self._device.connect()
-        self._device.write_gatt_char(PWR_CHARACTERISTIC, PWR_ON)
-        self._device.disconnect()
+        await self._device.connect()
+        await self._device.write_gatt_char(PWR_CHARACTERISTIC, PWR_ON)
+        await self._device.disconnect()
 
     def turn_off(self, **kwargs):
         """Turn the switch off."""
-        self._device.connect()
-        self._device.write_gatt_char(PWR_CHARACTERISTIC, PWR_STANDBY)
-        self._device.disconnect()
+        await self._device.connect()
+        await self._device.write_gatt_char(PWR_CHARACTERISTIC, PWR_STANDBY)
+        await self._device.disconnect()
 
     @property
     def name(self):
@@ -57,6 +59,6 @@ class BasestationSwitch(SwitchEntity):
 
     def update(self):
         """Fetch new state data for the sensor."""
-        self._device.connect()
-        self._is_on = self._device.is_turned_on()
-        self._device.disconnect()
+        await self._device.connect()
+        self._is_on = await self._device.read_gatt_char(PWR_CHARACTERISTIC) != PWR_STANDBY
+        await self._device.disconnect()
