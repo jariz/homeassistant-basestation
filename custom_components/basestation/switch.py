@@ -4,7 +4,9 @@ from bleak import BleakClient
 
 from homeassistant.components.switch import SwitchEntity
 
-import const
+PWR_CHARACTERISTIC = "00001525-1212-efde-1523-785feabcd124"
+PWR_ON = bytearray([0x01])
+PWR_STANDBY = bytearray([0x00])
 
 def setup_platform(hass, config, add_entities, discovery_info=None):
     """Set up the sensor platform."""
@@ -36,13 +38,13 @@ class BasestationSwitch(SwitchEntity):
     def turn_on(self, **kwargs):
         """Turn the switch on."""
         self._device.connect()
-        self._device.write_gatt_char(const.PWR_CHARACTERISTIC, const.PWR_ON)
+        self._device.write_gatt_char(PWR_CHARACTERISTIC, PWR_ON)
         self._device.disconnect()
 
     def turn_off(self, **kwargs):
         """Turn the switch off."""
         self._device.connect()
-        self._device.write_gatt_char(const.PWR_CHARACTERISTIC, const.PWR_STANDBY)
+        self._device.write_gatt_char(PWR_CHARACTERISTIC, PWR_STANDBY)
         self._device.disconnect()
 
     @property
