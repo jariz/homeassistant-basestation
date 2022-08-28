@@ -1,9 +1,8 @@
 """The basestation switch."""
 
 from bleak import BleakClient
-
 from homeassistant.components.switch import SwitchEntity
-
+from homeassistant.components import bluetooth
 import asyncio
 
 from .const import (
@@ -17,14 +16,15 @@ def setup_platform(hass, config, add_entities, discovery_info=None):
     """Set up the sensor platform."""
     mac = config.get("mac")
     name = config.get("name")
-    add_entities([BasestationSwitch(mac, name)])
+    add_entities([BasestationSwitch(hass, mac, name)])
 
 
 class BasestationSwitch(SwitchEntity):
     """The basestation switch implementtion."""
 
-    def __init__(self, mac, name):
+    def __init__(self, hass, mac, name):
         """Initialize the switch."""
+        self._hass = hass
         self._mac = mac
         self._name = name
         self._is_on = False
@@ -60,13 +60,16 @@ class BasestationSwitch(SwitchEntity):
         asyncio.run(self.async_update())
 
     async def async_turn_on(self):
-        async with BleakClient(self._mac) as client:
+        async with BleakClient(self.get_ble_device()) as client:
             await client.write_gatt_char(PWR_CHARACTERISTIC, PWR_ON)
 
     async def async_turn_off(self):
-        async with BleakClient(self._mac) as client:
+        async with BleakClient(self.get_ble_device()) as client:
             await client.write_gatt_char(PWR_CHARACTERISTIC, PWR_STANDBY)
 
     async def async_update(self):
-        async with BleakClient(self._mac) as client:
+        async with BleakClient(self.get_ble_device()) as client:
             self._is_on = await client.read_gatt_char(PWR_CHARACTERISTIC) != PWR_STANDBY
+
+    def get_ble_device(self):
+        return bluetooth.async_ble_device_from_address(self._hass, self._mac)
