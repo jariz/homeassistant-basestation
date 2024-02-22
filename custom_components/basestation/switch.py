@@ -72,4 +72,4 @@ class BasestationSwitch(SwitchEntity):
             self._is_on = await client.read_gatt_char(PWR_CHARACTERISTIC) != PWR_STANDBY
 
     def get_ble_device(self):
-        return bluetooth.async_ble_device_from_address(self._hass, self._mac)
+        return bluetooth.async_ble_device_from_address(self._hass, str(self._mac))
