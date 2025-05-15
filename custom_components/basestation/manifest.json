@@ -9,8 +9,16 @@
   "ssdp": [],
   "zeroconf": [],
   "homekit": {},
-  "dependencies": [],
+  "dependencies": [
+    "bluetooth_adapters"
+  ],
   "codeowners": [
     "@jariz"
+  ],
+   "bluetooth": [
+    {
+      "manufacturer_id": 1373,
+      "manufacturer_data_start": [0, 2, 3]
+    }
   ]
 }
