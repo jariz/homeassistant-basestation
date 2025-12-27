@@ -1,3 +1,9 @@
+----
+## ⚠ Archived ⚠
+Check out a version that seems to be better maintained here: https://github.com/MineTech13/homeassistant-basestation
+
+---
+
 # Valve Basestation integration for Homeassistant
 
 Read and manage power states for your Valve Index® Base Stations (also referred to as 'Lighthouse V2') through [BLE](https://en.wikipedia.org/wiki/Bluetooth_Low_Energy).
